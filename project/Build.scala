@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-
+package smarthealth
 import sbt._
 import Keys._
 import com.typesafe.sbt.osgi.SbtOsgi.{ OsgiKeys, osgiSettings, defaultOsgiSettings }
 
 object MinimalBuild extends Build {
 
-  lazy val buildVersion = "0.2"
+  lazy val buildVersion = "0.2-210-SNAPSHOT"
 
   lazy val typesafe = "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
   lazy val typesafeSnapshot = "Typesafe Snapshots Repository" at "http://repo.typesafe.com/typesafe/snapshots/"
@@ -38,6 +38,7 @@ object MinimalBuild extends Build {
     libraryDependencies += "com.esotericsoftware.kryo" % "kryo" % "2.21",
     libraryDependencies += "com.novocode" % "junit-interface" % "0.8" % "test"
     )
+    .settings(Publish.settings: _*)
     .settings(defaultOsgiSettings: _*)
     .settings(
       OsgiKeys.exportPackage := Seq("com.romix.akka.serialization.kryo;version\"0.2.0.1\""),
